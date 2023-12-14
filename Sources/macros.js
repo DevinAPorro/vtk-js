@@ -1689,6 +1689,7 @@ const LINE_HEIGHT = 40;
 const PAGE_HEIGHT = 800;
 
 export function normalizeWheel(wheelEvent) {
+  console.log('wheelEvent ', wheelEvent);
   let sX = 0; // spinX
   let sY = 0; // spinY
   let pX = 0; // pixelX
@@ -1743,12 +1744,12 @@ export function normalizeWheel(wheelEvent) {
   if (pY && !sY) {
     sY = pY < 1 ? -1 : 1;
   }
-
+  console.log('spinX %s spinY %s pixelX %s pixelY %s', sX, sY, pX, pY);
   return {
     spinX: sX,
-    spinY: sY,
+    spinY: sY || sX,
     pixelX: pX,
-    pixelY: pY,
+    pixelY: pY || pX,
   };
 }
 
